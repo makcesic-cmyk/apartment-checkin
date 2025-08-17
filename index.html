@@ -3,102 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Apartment Online Check-In</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 420px;
+      background: #f4f6f9;
+      color: #333;
     }
     .lang-buttons {
       display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-bottom: 15px;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .lang-buttons button {
       display: flex;
       align-items: center;
-      gap: 6px;
-      border: none;
-      background: #f8f9fa;
-      font-size: 1rem;
-      padding: 6px 10px;
+      gap: 8px;
+      background: #f9f9f9;
+      border: 1px solid #ccc;
       border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 14px;
       cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
+      transition: 0.2s;
     }
     .lang-buttons button:hover {
-      background: #e2e6ea;
-      transform: scale(1.05);
+      background: #e9ecef;
+    }
+    .lang-buttons img {
+      width: 20px;
+      height: 14px;
+      border-radius: 2px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #333;
+      color: #007bff;
     }
-    form label {
+    label {
       display: block;
-      margin: 12px 0 6px;
+      margin-top: 15px;
+      margin-bottom: 6px;
       font-weight: bold;
-      color: #444;
+      font-size: 14px;
     }
-    form input {
+    input[type="text"],
+    input[type="file"] {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
+      font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      font-size: 1rem;
-      box-sizing: border-box;
+      outline: none;
+      transition: border 0.2s;
     }
-    input[type="file"] {
-      padding: 6px;
+    input[type="text"]:focus {
+      border-color: #007bff;
     }
-    #submit-btn {
+    button[type="submit"] {
       margin-top: 20px;
       width: 100%;
-      background: #28a745;
-      color: #fff;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px;
       border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 1.1rem;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: 0.2s;
     }
-    #submit-btn:hover {
-      background: #218838;
+    button[type="submit"]:hover {
+      background: #0056b3;
     }
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .container {
-        border-radius: 0;
-        height: 100vh;
-        max-width: 100%;
+        margin: 15px;
+        padding: 20px;
+      }
+      .lang-buttons {
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="lang-buttons">
-      <button onclick="setLanguage('en')" title="English">🇬🇧 English</button>
-      <button onclick="setLanguage('bs')" title="Bosnian">🇧🇦 Bosanski</button>
-    </div>
+  
+  <!-- Language Switch -->
+  <div class="lang-buttons">
+    <button onclick="setLanguage('en')">
+      <img src="https://flagcdn.com/w20/gb.png" alt="English"> English
+    </button>
+    <button onclick="setLanguage('bs')">
+      <img src="https://flagcdn.com/w20/ba.png" alt="Bosanski"> Bosanski
+    </button>
+  </div>
 
+  <!-- Form Container -->
+  <div class="container">
     <h2 id="title">Online Check-In</h2>
 
     <form
@@ -150,7 +166,6 @@
     };
 
     function setLanguage(lang) {
-      localStorage.setItem("lang", lang);
       document.getElementById("title").innerText = translations[lang].title;
       document.getElementById("passport-label").innerText = translations[lang].passport;
       document.getElementById("name-label").innerText = translations[lang].name;
@@ -159,10 +174,7 @@
       document.getElementById("photo-label").innerText = translations[lang].photo;
       document.getElementById("submit-btn").innerText = translations[lang].submit;
     }
-
-    const savedLang = localStorage.getItem("lang");
-    const browserLang = navigator.language.startsWith("bs") ? "bs" : "en";
-    setLanguage(savedLang || browserLang);
   </script>
+
 </body>
 </html>
