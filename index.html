@@ -5,18 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Apartment Online Check-In</title>
-  <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-  <!--
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "3e3MkQU0cSbc4_b8X",
-      });
-   })();
-</script>
-  -->
+ 
 </head>
 <body>
   <h2>Online Check-In</h2>
@@ -40,9 +29,15 @@
 
     <label for="country">Country:</label>
     <input type="text" id="country" name="country" required><br><br>
-
+<!--
     <label for="photo">Upload Passport Photo:</label>
-    <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+    <input type="file" name="upload" id="photo"  accept="image/*" required>
+  -->
+  <br><br>
+    <label>
+    Your file:
+    <input type="file" name="upload" required accept="image/*">
+  </label>
 
     <button type="submit">Check In</button>
 
