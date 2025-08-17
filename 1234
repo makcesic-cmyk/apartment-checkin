@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apartment Online Check-In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+    .container {
+      max-width: 450px;
+      background: white;
+      padding: 20px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 { text-align: center; color: #333; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+    button { margin-top: 20px; width: 100%; padding: 12px; background: #007bff; color: white; border: none; font-size: 16px; cursor: pointer; border-radius: 4px; }
+    button:hover { background: #0056b3; }
+    .lang-switch { text-align: right; margin-bottom: 10px; }
+    .lang-switch button { background: none; border: none; cursor: pointer; font-weight: bold; color: #007bff; }
+    .lang-switch button:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Online Check-In</h2>
+
+    <form id="checkin-form">
+      <label for="passport">Passport Number:</label>
+      <input type="text" id="passport" name="passport" required>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" name="surname" required>
+
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" required>
+
+      <label for="photo">Upload Passport Photo:</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
+
+      <button type="submit">Check In</button>
+    </form>
+
+    <p id="status"></p>
+  </div>
+
+  <!-- Load EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS
+    (function(){
+      emailjs.init("YOUR_PUBLIC_KEY"); // ⬅️ replace with your EmailJS public key
+    })();
+
+    document.getElementById("checkin-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Collect form data
+      const formData = {
+        passport: document.getElementById("passport").value,
+        name: document.getElementById("name").value,
+        surname: document.getElementById("surname").value,
+        country: document.getElementById("country").value
+      };
+
+      // Send email via EmailJS
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData)
+        .then(function() {
+          document.getElementById("status").innerText = "✅ Check-in successful! Email sent.";
+        }, function(error) {
+          document.getElementById("status").innerText = "❌ Failed to send email: " + error.text;
+        });
+    });
+  </script>
+</body>
+</html>
