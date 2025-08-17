@@ -16,25 +16,33 @@
     .keybox h2 { color: #856404; }
     .keycode { font-size: 2rem; font-weight: bold; color: #d63384; margin: 15px 0; }
     footer { text-align: center; padding: 20px; margin-top: 40px; background: #eee; }
+    .lang-buttons { text-align: center; margin: 20px 0; }
+    .lang-buttons button { margin: 0 10px; padding: 8px 16px; cursor: pointer; border: none; border-radius: 5px; background: #007bff; color: white; }
+    .lang-buttons button:hover { background: #0056b3; }
   </style>
 </head>
 <body onload="if (document.referrer == '') self.location='index.html';">
 
   <header>
-    <h1>Sarajevo Pure Joy</h1>
-    <p>Your stay you'll enjoy !</p>
+    <h1 id="main-title">Sarajevo Pure Joy</h1>
+    <p id="subtitle">Your stay you'll enjoy !</p>
   </header>
+
+  <div class="lang-buttons">
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('bs')">Bosanski</button>
+  </div>
 
   <div class="container">
     <div class="description">
-      <h2>About the Apartment</h2>
-      <p>
+      <h2 id="about-title">About the Apartment</h2>
+      <p id="about-text">
         Welcome to our lovely apartment! 🌿<br><br>
         Located in a quiet neighborhood but close to everything you need —
         restaurants, shops, and public transport.<br><br>
         The apartment includes:
       </p>
-      <ul>
+      <ul id="features-list">
         <li>🛏 2 bedrooms with comfortable beds</li>
         <li>🍳 Fully equipped kitchen</li>
         <li>🛁 Modern bathroom</li>
@@ -44,9 +52,8 @@
       </ul>
     </div>
 
-    <h2>building photos</h2>
+    <h2 id="photos-title">Building Photos</h2>
     <div class="gallery">
-      <!-- Replace these links with your GitHub raw image URLs -->
       <img src="appimage1.jpg" alt="Image 1">
       <img src="appimage2.jpg" alt="Image 2">
       <img src="appimage3.jpg" alt="Image 3">
@@ -56,17 +63,83 @@
 
     <!-- Keybox section -->
     <div class="keybox">
-      <h2>🔑 Keybox Access</h2>
-      <p>The apartment keys are stored in the lockbox at the entrance of the building.</p>
-      <p>Use the following code to open it:</p>
+      <h2 id="keybox-title">🔑 Keybox Access</h2>
+      <p id="keybox-text1">The apartment keys are stored in the lockbox at the entrance of the building.</p>
+      <p id="keybox-text2">Use the following code to open it:</p>
       <div class="keycode">1234</div>
-      <p>(Please keep this code private and do not share it with anyone.)</p>
+      <p id="keybox-text3">(Please keep this code private and do not share it with anyone.)</p>
     </div>
   </div>
 
   <footer>
-    <p>📞 Contact: +387 61 566 169 | ✉️ aida.kulo@gmail.com</p>
+    <p id="contact">📞 Contact: +387 61 566 169 | ✉️ aida.kulo@gmail.com</p>
   </footer>
 
+  <script>
+    const translations = {
+      en: {
+        title: "Sarajevo Pure Joy",
+        subtitle: "Your stay you'll enjoy !",
+        aboutTitle: "About the Apartment",
+        aboutText: "Welcome to our lovely apartment! 🌿<br><br>Located in a quiet neighborhood but close to everything you need — restaurants, shops, and public transport.<br><br>The apartment includes:",
+        features: [
+          "🛏 2 bedrooms with comfortable beds",
+          "🍳 Fully equipped kitchen",
+          "🛁 Modern bathroom",
+          "📶 Free Wi-Fi",
+          "❄️ Air conditioning",
+          "🚗 Free parking space"
+        ],
+        photosTitle: "Building Photos",
+        keyboxTitle: "🔑 Keybox Access",
+        keybox1: "The apartment keys are stored in the lockbox at the entrance of the building.",
+        keybox2: "Use the following code to open it:",
+        keybox3: "(Please keep this code private and do not share it with anyone.)",
+        contact: "📞 Contact: +387 61 566 169 | ✉️ aida.kulo@gmail.com"
+      },
+      bs: {
+        title: "Sarajevo Čista Radost",
+        subtitle: "Uživajte u svom boravku!",
+        aboutTitle: "O Apartmanu",
+        aboutText: "Dobrodošli u naš predivni apartman! 🌿<br><br>Smješten je u mirnom naselju, a opet blizu svega što vam je potrebno — restorana, prodavnica i javnog prevoza.<br><br>Apartman sadrži:",
+        features: [
+          "🛏 2 spavaće sobe s udobnim krevetima",
+          "🍳 Potpuno opremljena kuhinja",
+          "🛁 Moderan kupatilo",
+          "📶 Besplatan Wi-Fi",
+          "❄️ Klima uređaj",
+          "🚗 Besplatan parking"
+        ],
+        photosTitle: "Fotografije Zgrade",
+        keyboxTitle: "🔑 Pristup Kutiji sa Ključevima",
+        keybox1: "Ključevi apartmana se nalaze u kutiji na ulazu u zgradu.",
+        keybox2: "Koristite sljedeći kod da je otvorite:",
+        keybox3: "(Molimo vas da ovaj kod čuvate privatnim i ne dijelite ga s drugima.)",
+        contact: "📞 Kontakt: +387 61 566 169 | ✉️ aida.kulo@gmail.com"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.getElementById("main-title").innerHTML = translations[lang].title;
+      document.getElementById("subtitle").innerHTML = translations[lang].subtitle;
+      document.getElementById("about-title").innerHTML = translations[lang].aboutTitle;
+      document.getElementById("about-text").innerHTML = translations[lang].aboutText;
+
+      const featuresList = document.getElementById("features-list");
+      featuresList.innerHTML = "";
+      translations[lang].features.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = item;
+        featuresList.appendChild(li);
+      });
+
+      document.getElementById("photos-title").innerHTML = translations[lang].photosTitle;
+      document.getElementById("keybox-title").innerHTML = translations[lang].keyboxTitle;
+      document.getElementById("keybox-text1").innerHTML = translations[lang].keybox1;
+      document.getElementById("keybox-text2").innerHTML = translations[lang].keybox2;
+      document.getElementById("keybox-text3").innerHTML = translations[lang].keybox3;
+      document.getElementById("contact").innerHTML = translations[lang].contact;
+    }
+  </script>
 </body>
 </html>
