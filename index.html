@@ -6,44 +6,126 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Apartment Online Check-In</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .lang-buttons { margin-bottom: 20px; }
-    button { margin-right: 10px; padding: 6px 12px; cursor: pointer; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+    }
+    .lang-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    .lang-buttons button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      background: #f8f9fa;
+      font-size: 1rem;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .lang-buttons button:hover {
+      background: #e2e6ea;
+      transform: scale(1.05);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    form label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+      color: #444;
+    }
+    form input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    input[type="file"] {
+      padding: 6px;
+    }
+    #submit-btn {
+      margin-top: 20px;
+      width: 100%;
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #submit-btn:hover {
+      background: #218838;
+    }
+    @media (max-width: 480px) {
+      .container {
+        border-radius: 0;
+        height: 100vh;
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  
-  <div class="lang-buttons">
-    <button onclick="setLanguage('en')">English</button>
-    <button onclick="setLanguage('bs')">Bosanski</button>
+  <div class="container">
+    <div class="lang-buttons">
+      <button onclick="setLanguage('en')" title="English">🇬🇧 English</button>
+      <button onclick="setLanguage('bs')" title="Bosnian">🇧🇦 Bosanski</button>
+    </div>
+
+    <h2 id="title">Online Check-In</h2>
+
+    <form
+      action="https://formspree.io/f/mvgqnabv"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="_captcha" value="false">
+
+      <label for="passport" id="passport-label">Passport Number:</label>
+      <input type="text" id="passport" name="passport" required>
+
+      <label for="name" id="name-label">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="surname" id="surname-label">Surname:</label>
+      <input type="text" id="surname" name="surname" required>
+
+      <label for="country" id="country-label">Country:</label>
+      <input type="text" id="country" name="country" required>
+
+      <label id="photo-label">Passport Photo:</label>
+      <input type="file" name="upload" required accept="image/*">
+
+      <button type="submit" id="submit-btn">Check In</button>
+    </form>
   </div>
-
-  <h2 id="title">Online Check-In</h2>
-
-  <form
-    action="https://formspree.io/f/mvgqnabv"
-    method="POST"
-    enctype="multipart/form-data"
-  >
-    <input type="hidden" name="_captcha" value="false">
-
-    <label for="passport" id="passport-label">Passport Number:</label>
-    <input type="text" id="passport" name="passport" required><br><br>
-
-    <label for="name" id="name-label">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="surname" id="surname-label">Surname:</label>
-    <input type="text" id="surname" name="surname" required><br><br>
-
-    <label for="country" id="country-label">Country:</label>
-    <input type="text" id="country" name="country" required><br><br>
-
-    <label id="photo-label">Passport Photo:</label>
-    <input type="file" name="upload" required accept="image/*"><br><br>
-
-    <button type="submit" id="submit-btn">Check In</button>
-  </form>
 
   <script>
     const translations = {
@@ -68,6 +150,7 @@
     };
 
     function setLanguage(lang) {
+      localStorage.setItem("lang", lang);
       document.getElementById("title").innerText = translations[lang].title;
       document.getElementById("passport-label").innerText = translations[lang].passport;
       document.getElementById("name-label").innerText = translations[lang].name;
@@ -76,7 +159,10 @@
       document.getElementById("photo-label").innerText = translations[lang].photo;
       document.getElementById("submit-btn").innerText = translations[lang].submit;
     }
-  </script>
 
+    const savedLang = localStorage.getItem("lang");
+    const browserLang = navigator.language.startsWith("bs") ? "bs" : "en";
+    setLanguage(savedLang || browserLang);
+  </script>
 </body>
 </html>
