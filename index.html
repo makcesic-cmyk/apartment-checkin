@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apartment Online Check-In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+    .container {
+      max-width: 450px;
+      background: white;
+      padding: 20px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 { text-align: center; color: #333; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+    button { margin-top: 20px; width: 100%; padding: 12px; background: #007bff; color: white; border: none; font-size: 16px; cursor: pointer; border-radius: 4px; }
+    button:hover { background: #0056b3; }
+    .lang-switch { text-align: right; margin-bottom: 10px; }
+    .lang-switch button { background: none; border: none; cursor: pointer; font-weight: bold; color: #007bff; }
+    .lang-switch button:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch">
+      <button type="button" onclick="setLanguage('en')">🇬🇧 English</button> | 
+      <button type="button" onclick="setLanguage('bs')">🇧🇦 Bosanski</button>
+    </div>
+
+    <h2 id="title" data-en="Online Check-In" data-bs="Online prijava">Online Check-In</h2>
+
+    <form action="https://formsubmit.co/aida.kulo@gmail.com" method="POST" enctype="multipart/form-data">
+      <!-- Disable CAPTCHA -->
+      <input type="hidden" name="_captcha" value="false">
+      <!-- Redirect after submission -->
+      <input type="hidden" name="_next" value="thank-you.html">
+
+      <!-- 👇 This is the lockbox code (change it for every guest) -->
+      <input type="hidden" name="lockbox_code" value="4829">
+
+      <label for="passport" data-en="Passport Number:" data-bs="Broj pasoša:">Passport Number:</label>
+      <input type="text" id="passport" name="passport" required>
+
+      <label for="name" data-en="Name:" data-bs="Ime:">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="surname" data-en="Surname:" data-bs="Prezime:">Surname:</label>
+      <input type="text" id="surname" name="surname" required>
+
+      <label for="country" data-en="Country:" data-bs="Država:">Country:</label>
+      <input type="text" id="country" name="country" required>
+
+      <label for="photo" data-en="Upload Passport Photo:" data-bs="Dodaj sliku pasoša:">Upload Passport Photo:</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
+
+      <button type="submit" data-en="Check In" data-bs="Prijavi se">Check In</button>
+    </form>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${lang}`);
+      });
+    }
+  </script>
+</body>
+</html>
