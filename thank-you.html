@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +63,6 @@
       <img src="uputstvo.jpg" alt="Manual">
     </div>
 
-    <!-- Google Maps section -->
     <h2 id="map-title">📍 Location</h2>
     <div style="margin:20px 0;">
       <iframe 
@@ -76,7 +76,6 @@
       </iframe>
     </div>
 
-    <!-- Keybox section -->
     <div class="keybox">
       <h2 id="keybox-title">🔑 Keybox Access</h2>
       <p id="keybox-text1">The apartment keys are stored in the lockbox at the entrance of the building.</p>
@@ -160,6 +159,169 @@
       document.getElementById("keybox-text2").innerHTML = translations[lang].keybox2;
       document.getElementById("keybox-text3").innerHTML = translations[lang].keybox3;
       document.getElementById("contact").innerHTML = translations[lang].contact;
+    }
+ 
+  </script>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>Apartment Online Check-in</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .lang-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #007BFF;
+      color: white;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="welcome">👋 Welcome to our apartment Sarajevo Pure Joy!</h1>
+    <p id="intro">We hope you will enjoy your stay. If you need anything, don’t hesitate to contact us: 📞 Phone: +387 61 566 169</p>
+    
+    <div class="lang-buttons">
+      <button onclick="setLanguage('en')">🇬🇧 English</button>
+      <button onclick="setLanguage('bs')">🇧🇦 Bosanski</button>
+    </div>
+
+    <div class="section">
+      <h3>📍 <span id="location-title">Location</span></h3>
+      <p id="location-text">
+        The easiest way to find us at the address <strong>Marcela Šnajdera 9c (red building)</strong> 
+        is to follow the road to <strong>Apoteka Tilia</strong> (at Marcela Šnajdera 9b, orange building) 
+        which is located in the next building of the same type.
+      </p>
+
+      <!-- Embedded Google Maps for Apoteka Tilia -->
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2920.662063750217!2d18.389523!3d43.857302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4758c9e1cf6a1f6b%3A0x1234567890abcdef!2sApoteka%20Tilia%2C%20Marcela%20%C5%A0najdera%209b%2C%20Sarajevo!5e0!3m2!1sen!2sba!4v1734576000000!5m2!1sen!2sba" 
+        width="100%" 
+        height="350" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="section">
+      <h3>🔑 Code for key box</h3>
+      <p>5102</p>
+    </div>
+
+    <div class="section">
+      <h3>🚪 Apartment Entrance</h3>
+      <p id="entrance">Enter the building hallway (please be quiet while you are in the common area of the building, as the other tenants request their peace). Go up one more flight of stairs to the next floor. The apartment is on the right – you’ll recognize it by the brown doormat that says "HOME".</p>
+    </div>
+
+    <div class="section">
+      <h3>☕ Hot water and Coffee machine</h3>
+      <p id="coffee">Keep the switch above the sink and two switches in front of the bathroom always turned on – this ensures hot water. Please fill the Dolce Gusto coffee machine only when making coffee. After use, empty the water tank.</p>
+    </div>
+
+    <div class="section">
+      <h3>📶 Wi-Fi</h3>
+      <p>Network name: Sarajevo pure joy <br> Password: 08081979</p>
+    </div>
+
+    <div class="section">
+      <h3>📺 TV Instructions</h3>
+      <p>HDMI 1 is the TV input</p>
+    </div>
+
+    <div class="section">
+      <h3>🚭 Smoking Policy</h3>
+      <p>You may smoke on the balcony or outside the building</p>
+    </div>
+
+    <div class="section">
+      <h3>🅿️ Parking Information</h3>
+      <p id="parking">There is no private parking at or in front of the building, but you can park for free in front of the building if there is free space or in the rest of the street/neighbouring streets or in the neighbouring paid parking areas (The rate in parking zone 2 is approximately 1-2 KM/hour).</p>
+    </div>
+
+    <div class="section">
+      <h3>🗑️ Trash</h3>
+      <p>Please take out the trash to trash bins located in the middle part of the street.</p>
+    </div>
+
+    <div class="section">
+      <h3>⏰ Check-out Time</h3>
+      <p>By <strong>11:00 AM</strong>, please leave the key in the same key box.</p>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        welcome: "👋 Welcome to our apartment Sarajevo Pure Joy!",
+        intro: "We hope you will enjoy your stay. If you need anything, don’t hesitate to contact us: 📞 Phone: +387 61 566 169",
+        locationTitle: "Location",
+        locationText: "The easiest way to find us at the address Marcela Šnajdera 9c (red building) is to follow the road to Apoteka Tilia (at Marcela Šnajdera 9b, orange building) which is located in the next building of the same type.",
+        entrance: "Enter the building hallway (please be quiet while you are in the common area of the building, as the other tenants request their peace). Go up one more flight of stairs to the next floor. The apartment is on the right – you’ll recognize it by the brown doormat that says 'HOME'.",
+        coffee: "Keep the switch above the sink and two switches in front of the bathroom always turned on – this ensures hot water. Please fill the Dolce Gusto coffee machine only when making coffee. After use, empty the water tank.",
+        parking: "There is no private parking at or in front of the building, but you can park for free in front of the building if there is free space or in the rest of the street/neighbouring streets or in the neighbouring paid parking areas (The rate in parking zone 2 is approximately 1-2 KM/hour)."
+      },
+      bs: {
+        welcome: "👋 Dobrodošli u naš stan Sarajevo Pure Joy!",
+        intro: "Nadamo se da ćete uživati u boravku. Ako vam bilo šta zatreba, slobodno nas kontaktirajte: 📞 Telefon: +387 61 566 169",
+        locationTitle: "Lokacija",
+        locationText: "Najlakši način da nas pronađete na adresi Marcela Šnajdera 9c (crvena zgrada) jeste da pratite put prema Apoteci Tilia (Marcela Šnajdera 9b, narandžasta zgrada) koja se nalazi u susjednoj zgradi istog tipa.",
+        entrance: "Uđite u ulaz zgrade (molimo vas da budete tihi dok ste u zajedničkim prostorijama zgrade, jer ostali stanari traže svoj mir). Popnite se još jedno spratno stepenište. Stan je desno – prepoznat ćete ga po smeđoj otiraču na kojem piše 'HOME'.",
+        coffee: "Držite prekidač iznad sudopera i dva prekidača ispred kupatila uvijek uključena – to osigurava toplu vodu. Molimo vas da punite Dolce Gusto aparat za kafu samo kada pravite kafu. Nakon upotrebe ispraznite rezervoar za vodu.",
+        parking: "Nema privatnog parkinga ispred ili kod zgrade, ali možete besplatno parkirati ispred zgrade ako ima slobodnog mjesta ili u ostatku ulice/susjednim ulicama ili na obližnjim plaćenim parking prostorima (Cijena u parking zoni 2 je približno 1-2 KM/sat)."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.getElementById("welcome").innerText = translations[lang].welcome;
+      document.getElementById("intro").innerText = translations[lang].intro;
+      document.getElementById("location-title").innerText = translations[lang].locationTitle;
+      document.getElementById("location-text").innerText = translations[lang].locationText;
+      document.getElementById("entrance").innerText = translations[lang].entrance;
+      document.getElementById("coffee").innerText = translations[lang].coffee;
+      document.getElementById("parking").innerText = translations[lang].parking;
     }
   </script>
 </body>
