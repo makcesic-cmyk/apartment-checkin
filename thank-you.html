@@ -51,7 +51,7 @@
         <li>🚗 Free parking space</li>
       </ul>
     </div>
-    <p><strong>Carrefully read and observe the photos.</strong></p>
+    <p id="observe-text"><strong>Carefully read and observe the photos.</strong></p>
 
     <h2 id="photos-title">Building Photos:</h2>
     <div class="gallery">
@@ -60,6 +60,20 @@
       <img src="appimage3.jpg" alt="Image 3">
       <img src="appimage4.jpg" alt="image 4">
       <img src="uputstvo.jpg" alt="Manual">
+    </div>
+
+    <!-- Google Maps section -->
+    <h2 id="map-title">📍 Location</h2>
+    <div style="margin:20px 0;">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.225451643717!2d18.413076!3d43.856259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4758c8c2e3df77c5%3A0x50cb52f5a31c8b92!2sSarajevo!5e0!3m2!1sen!2sba!4v1692199999999" 
+        width="100%" 
+        height="350" 
+        style="border:0; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2);" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
 
     <!-- Keybox section -->
@@ -90,9 +104,10 @@
           "📶 Free Wi-Fi",
           "❄️ Air conditioning",
           "🚗 Free parking space"
-
         ],
+        observe: "<strong>Carefully read and observe the photos.</strong>",
         photosTitle: "Building Photos",
+        mapTitle: "📍 Location",
         keyboxTitle: "🔑 Keybox Access",
         keybox1: "The apartment keys are stored in the lockbox at the entrance of the building.",
         keybox2: "Use the following code to open it:",
@@ -112,7 +127,9 @@
           "❄️ Klima uređaj",
           "🚗 Besplatan parking"
         ],
+        observe: "<strong>Pažljivo pročitajte i pogledajte fotografije.</strong>",
         photosTitle: "Fotografije Zgrade",
+        mapTitle: "📍 Lokacija",
         keyboxTitle: "🔑 Pristup Kutiji sa Ključevima",
         keybox1: "Ključevi apartmana se nalaze u kutiji na ulazu u zgradu.",
         keybox2: "Koristite sljedeći kod da je otvorite:",
@@ -135,7 +152,9 @@
         featuresList.appendChild(li);
       });
 
+      document.getElementById("observe-text").innerHTML = translations[lang].observe;
       document.getElementById("photos-title").innerHTML = translations[lang].photosTitle;
+      document.getElementById("map-title").innerHTML = translations[lang].mapTitle;
       document.getElementById("keybox-title").innerHTML = translations[lang].keyboxTitle;
       document.getElementById("keybox-text1").innerHTML = translations[lang].keybox1;
       document.getElementById("keybox-text2").innerHTML = translations[lang].keybox2;
