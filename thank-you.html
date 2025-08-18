@@ -218,10 +218,14 @@
     </div>
 
     <!-- Google Maps Embed for Apoteka Tilia -->
- <div   $apiKey = 'mySecretKey';>
-return 'https://www.google.com/maps/place/Apoteka+Tilia/@43.8732587,18.4104908,17z/data=!3m1!4b1!4m6!3m5!1s0x4758cf38850441b9:0xeace414a2241c121!8m2!3d43.8732549!4d18.4130711!16s%2Fg%2F11lglf2z4s?entry=ttu&g_ep=EgoyMDI1MDgxMy4wIKXMDSoASAFQAw%3D%3D'.
-'?q=Sarajevo,Bosnia&key='.$apiKey;
- </div>
+ <div class="map-container">
+      <h2 id="map-title">📍 Location</h2>
+      <iframe 
+        src="https://maps.app.goo.gl/bjaiJ5AF1JfWaCUQ8"
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+    
     <div class="keybox">
       <h2 id="keybox-title">🔑 Keybox Access</h2>
       <p id="keybox-text1">The apartment keys are stored in the lockbox at the entrance of the building.</p>
