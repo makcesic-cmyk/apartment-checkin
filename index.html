@@ -165,10 +165,21 @@
     const browserLang = navigator.language.startsWith("bs") ? "bs" : "en";
     setLanguage(savedLang || browserLang);
   </script>
+   <script src="https://www.google.com/recaptcha/api.js"></script>
+   <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
 
-helouuuuuu
+  <button class="g-recaptcha" 
+        data-sitekey="6LcOVPIrAAAAACafF8c1gAKptcEX5VNJcDpWqSjE" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+
+helouuuuuu2
   
-  <!-- 6LcOVPIrAAAAACafF8c1gAKptcEX5VNJcDpWqSjE -->
+
 
 
   
